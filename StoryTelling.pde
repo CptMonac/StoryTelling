@@ -19,7 +19,7 @@ void setup()
   microphone = new STT(this);
   microphone.enableDebug();
   microphone.setLanguage("en");
-  //microphone.enableAutoRecord();
+  microphone.enableAutoRecord();
 
   textFont(createFont("Arial", 24));
   defaultImage = loadImage("prompt.jpg");
@@ -45,13 +45,14 @@ void draw()
 
  if (imgLink != null)
  {
- 	  searchImage = loadImage(imgLink, "jpg");
+    searchImage = loadImage(imgLink, "jpg");
     image(searchImage, 0, 0, width-200, height);
  }
  else 
     image(defaultImage, 0, 0, width-200, height); 
 
  text(searchTerm, width-200, height - 100, 200, 200); 
+ //println("phrase:"+searchTerm+searchTerm.length());
 }
   
 // Method is called if transcription was successfull 
@@ -61,6 +62,9 @@ void transcribe (String utterance, float confidence)
   JSONObject ServerResponse; //Store initial server response
   JSONObject imageObject;    //Store image objects
 
+  if(utterance.length() == 0)
+    return;
+  
   //Update search term
   searchTerm = utterance;
   
