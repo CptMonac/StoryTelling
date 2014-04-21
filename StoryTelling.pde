@@ -31,6 +31,7 @@ void setup()
   
 void draw()
 {
+ background(128);
  if (recordAudio)
  {
    microphone.begin();
@@ -50,7 +51,7 @@ void draw()
  else 
     image(defaultImage, 0, 0, width-200, height); 
 
- text(searchTerm, width-190, height - 50); 
+ text(searchTerm, width-200, height - 100, 200, 200); 
 }
   
 // Method is called if transcription was successfull 
